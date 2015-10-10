@@ -6,7 +6,7 @@
 
   - __Product Owner__: Igor Stefanco
   - __Scrum Master__: David Churchill
-  - __Development Team Members__: Erik Hsiao, Sanjay Chakrapani
+  - __Development Team Members__: Erik Hsiao, Sanjay Chakrapani, Ben Hejkal, Jewels Nocera, Yeon Seo
 
 ## Table of Contents
 
