@@ -23,7 +23,7 @@ Once the project moves into development, the press release can be used as a touc
   > Rehabitis for anyone who wants to improve themselves.
 
 ## Summary ##
-  > Rehabitis a web application that keeps track of and manages habits.  Create one habit a week, and see how long of a habit streak you can get.  It gives you reminders of when you need to complete your habit-related goal and holds you accountable by tracking your progress on your profile.
+  > Rehabitis a web application that keeps track of and manages habits.  See how long of a habit streak you can get.  It gives you reminders of when you need to complete your habit-related goal and holds you accountable by tracking your progress on your profile.
 
 ## Problem ##
   > People need motivation to stick with new habits.
