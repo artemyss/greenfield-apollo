@@ -16,29 +16,29 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
 
-## Habit Trainer ##
-  > Habit Trainer helps you form new habits one week at a time.
+## Rehabit##
+  > Rehabithelps you form new habits one week at a time.
 
-## Who is Habit Trainer for? ##
-  > Habit Trainer is for anyone who wants to improve themselves.
+## Who is Rehabitfor? ##
+  > Rehabitis for anyone who wants to improve themselves.
 
 ## Summary ##
-  > Habit Trainer is a web application that keeps track of and manages habits.  Create one habit a week, and see how long of a habit streak you can get.  It gives you reminders of when you need to complete your habit-related goal and holds you accountable by tracking your progress on your profile.
+  > Rehabitis a web application that keeps track of and manages habits.  Create one habit a week, and see how long of a habit streak you can get.  It gives you reminders of when you need to complete your habit-related goal and holds you accountable by tracking your progress on your profile.
 
 ## Problem ##
   > People need motivation to stick with new habits.
 
 ## Solution ##
-  > Habit Trainer notifies you when you need to complete your habit and tracks data visually for users to track themselves.
+  > Rehabitnotifies you when you need to complete your habit and tracks data visually for users to track themselves.
 
 ## Quote from You ##
-  > "Habit Trainer keeps you accountable and makes sure you're focused on your goals every day."
+  > "Rehabitkeeps you accountable and makes sure you're focused on your goals every day."
 
 ## How to Get Started ##
-  > Create an account on Habit Trainer or just install the Habit Trainer Chrome extension and log in with your Google Account.  Then you can start adding and tracking habits right away.
+  > Create an account on Rehabitor just install the RehabitChrome extension and log in with your Google Account.  Then you can start adding and tracking habits right away.
 
 ## Customer Quote ##
-  > "Habit Trainer helps me keep on track with my workout goals."
+  > "Rehabithelps me keep on track with my workout goals."
 
 ## Closing and Call to Action ##
   > Start improving yourself today with Habit Trainer!
