@@ -1,8 +1,8 @@
 angular.module('app.dashboard', [])
 
-.controller('DashboardController', ['$rootScope', '$scope', '$location', 'Habits', 'Events',
-  function($rootScope, $scope, $location, Habits, Events) {
-    $rootScope.showNav = true;
+.controller('DashboardController', ['$rootScope', '$scope', '$window', '$location', 'Habits', 'Events',
+  function($rootScope, $scope, $window, $location, Habits, Events) {
+    $scope.username = $window.localStorage.username;
 
     $scope.testHabits = [
       {habitName: 'Submit a Pull Request', streak: 5, checkinCount: 25, failedCount: 3, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 15, active:true},
