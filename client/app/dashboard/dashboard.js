@@ -1,9 +1,9 @@
 angular.module('app.dashboard', ['ngMaterial'])
 
-.controller('DashboardController', ['$rootScope', '$scope', '$location', 'Habits', 'Events',
-  function($rootScope, $scope, $location, Habits, Events) {
-    $rootScope.showNav = true;
-    // $scope.current;
+.controller('DashboardController', ['$rootScope', '$scope', '$window', '$location', 'Habits', 'Events',
+  function($rootScope, $scope, $window, $location, Habits, Events) {
+
+    $scope.username = $window.localStorage.username;
 
     // $scope.testHabits = [
     //   {habitName: 'Submit a Pull Request', streak: 5, checkinCount: 25, failedCount: 3, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 15, active:true},
@@ -12,6 +12,10 @@ angular.module('app.dashboard', ['ngMaterial'])
     // ];
 
     // $scope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c"];
+
+    $scope.toggleDashboard = function() {
+      $('.dashboard').toggleClass("slideOut");
+    }
 
     $scope.buttonState = function (habit, state) {
       if (state === 'pending') {
@@ -64,7 +68,26 @@ angular.module('app.dashboard', ['ngMaterial'])
         });
     };
 
+    $scope.getRecord = function() {
+      Habits.getRecord()
+        .then(function(record) {
+          $scope.record = record;
+        })
+    }
+
     $scope.getHabits();  // Invoke to render active habits on dashboard
+
+    var cal = new CalHeatMap();
+    cal.init({
+      data: $scope.record,
+      domain: "month",
+      subDomain: "x_day",
+      range: 1,
+      displayLegend: false,
+      cellSize: 30,
+      cellPadding: 5,
+      domainDynamicDimension: false
+    });
 
     $scope.toggleSampleData = function () {
       $rootScope.sample = !$rootScope.sample;

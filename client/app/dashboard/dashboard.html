@@ -1,5 +1,54 @@
 <div class="container">
-<!--   <button type="button" class="btn btn-success" ng-click="toggleSampleData()">Toggle Sample Data</button> <br><br>-->
+  <div class="dashboard">
+    <section>
+    <h1>Rehabit</h1>
+    <div class="username">Welcome, {{username}}!</div>
+    <a href="#/signout">Sign out</a>
+    </section>
+    <section>
+      <!--Score chart -->
+      <div>
+        <h2> Score: </h2>
+        <c3chart ng-if="totalCompleted || totalFailed" class="donut" bindto-id="donut-plot1-chart">
+          <div ng-repeat="habit in habits">
+            <chart-column column-id="{{'Completed &quot;' + habit.habitName + '&quot;'}}"
+                        column-values="{{habit.checkinCount}}"
+                        column-type="donut"
+                        column-color="{{colors[$index]}}"/>
+          </div>
+          <chart-column column-id="Failed"
+                      column-values="{{totalFailed}}"
+                      column-type="donut"
+                      column-color="#d62728"/>
+          <chart-legend show-legend="false">
+          <chart-donut title="{{score}}" show-label="false"/>
+          <chart-tooltip value-format-function="formatDonut"/>
+        </c3chart>
+        <h3 ng-if="!totalCompleted">No score data</h3>
+      </div>
+      <!-- Streaks chart -->
+      <div>
+        <h2> Current streak: </h2>
+        <div id="current-streak">
+          <div ng-if="habitStreaks.length">
+            <d3-bars data="habitStreaks"></d3-bars>
+          </div>
+          <h3 ng-if="!habitStreaks.length">No streak data</h3>
+        </div>
+      </div>
+      <!-- Calendar -->
+      <div>
+        <h2> Calendar </h2>
+        <div id="cal-heatmap"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="smallDash">
+  <h1>Rehabit</h1>
+  <button class="toggleDashboard" ng-click="toggleDashboard()">toggle</button>
+  </div>
+
   <md-content class="md-padding">
     <md-card ng-repeat="habit in habits | filter:{active:true}" style={{color(habit)}}>
       <md-card-content>
@@ -83,3 +132,4 @@
       </div>
     </md-card>
   </md-content>
+</div>

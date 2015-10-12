@@ -19,15 +19,15 @@ angular.module('app.directives', [])
           .append('svg')
           .style('width', '100%');
 
-        $window.onresize = function() {
-          scope.$apply();
-        };
+        // $window.onresize = function() {
+        //   scope.$apply();
+        // };
 
-        scope.$watch(function() {
-          return angular.element($window)[0].innerWidth;
-        }, function() {
-          scope.render(scope.data);
-        });
+        // scope.$watch(function() {
+        //   return angular.element($window)[0].innerWidth;
+        // }, function() {
+        //   scope.render(scope.data);
+        // });
 
         scope.$watch('data', function(newData) {
           scope.render(newData);
@@ -59,7 +59,7 @@ angular.module('app.directives', [])
                   return scope.onClick({item: d});
                 })
                 .attr('height', barHeight)
-                .attr('width', 140)
+                .attr('width', '100%')
                 .attr('x', Math.round(margin/2))
                 .attr('y', function(d,i) {
                   return i * (barHeight + barPadding);

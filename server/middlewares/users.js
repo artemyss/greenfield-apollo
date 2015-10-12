@@ -1,5 +1,6 @@
 // modules =================================================
 var userController = require('../controllers/users');
+var recordController = require('../controllers/records');
 
 module.exports = function (router) {
   // GET: /api/users/habits
@@ -24,4 +25,7 @@ module.exports = function (router) {
   // deactivates habit or edit reminder time / due time
   router.put('/habits/:id', userController.verifyHabit,
     userController.editHabit);
+
+  router.get('/checkin', userController.showRecord);
+  router.post('/checkin/:id', userController.verifyHabit, userController.checkinHabit);
 };
