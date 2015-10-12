@@ -3,7 +3,43 @@ angular.module('app.dashboard', ['ngMaterial'])
 .controller('DashboardController', ['$rootScope', '$scope', '$location', 'Habits', 'Events',
   function($rootScope, $scope, $location, Habits, Events) {
     $rootScope.showNav = true;
-    // $scope.current;
+    $rootScope.create = false;
+
+    $scope.toggleCreate = function(){
+      $rootScope.create = !$rootScope.create;
+    };
+
+    $scope.editHabit = function(habit) {
+      Habits.setEdit(habit);
+      $scope.habit = Habits.getEdit();
+      console.log($scope.habit);
+      $scope.habit.show = true;
+    };
+
+    $scope.updateHabit = function() {
+      Habits.updateHabit($scope.habit)
+        .then(function() {
+          $scope.habit.show = false;
+          $rootScope.$broadcast('habitChange');
+          // $scope.getHabits();
+        })
+        .catch(function(err) {
+          console.error(err);
+        });
+    };
+
+    $scope.deactivateHabit = function() {
+      $scope.habit.active = false;
+      Habits.updateHabit($scope.habit)
+        .then(function() {
+          $rootScope.$broadcast('habitChange');
+          $location.path('/dashboard');
+        })
+        .catch(function(err) {
+          console.error(err);
+        });
+    };
+
 
     // $scope.testHabits = [
     //   {habitName: 'Submit a Pull Request', streak: 5, checkinCount: 25, failedCount: 3, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 15, active:true},
@@ -66,48 +102,15 @@ angular.module('app.dashboard', ['ngMaterial'])
 
     $scope.getHabits();  // Invoke to render active habits on dashboard
 
-    $scope.toggleSampleData = function () {
-      $rootScope.sample = !$rootScope.sample;
-      $location.path('/');
-    };
+    // $scope.toggleSampleData = function () {
+    //   $rootScope.sample = !$rootScope.sample;
+    //   $location.path('/');
+    // };
 
-    $scope.formatDonut = function (value) {
-        return value;
-    };
 
     $scope.color = function(habit) {
       // return "opacity: " + habit.streak / 7;
       return "background-color: hsla(132, 100%, 34%," + habit.streak / 14 + ")";
-    };
-
-    $scope.editHabit = function(habit) {
-      Habits.setEdit(habit);
-      $scope.current = Habits.getEdit();
-      $scope.current.show = true;
-    };
-
-    $scope.updateHabit = function() {
-      Habits.updateHabit($scope.current)
-        .then(function() {
-          $scope.current.show = false;
-          $rootScope.$broadcast('habitChange');
-          $scope.getHabits();
-        })
-        .catch(function(err) {
-          console.error(err);
-        });
-    };
-
-    $scope.deactivateHabit = function() {
-      $scope.current.active = false;
-      Habits.updateHabit($scope.current)
-        .then(function() {
-          $rootScope.$broadcast('habitChange');
-          $location.path('/dashboard');
-        })
-        .catch(function(err) {
-          console.error(err);
-        });
     };
 
     $scope.checkinHabit = function(habit) {
