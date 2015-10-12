@@ -4,6 +4,7 @@ var User = require('../models/user');
 var GoogleUser = require('../models/googleUser');
 var config = require('./config');
 var utils = require('../middlewares/utils');
+var moment = require('moment');
 
 // database connection =====================================
 var dbURI = process.env.MONGOLAB_URI || config.localdb;
@@ -34,8 +35,7 @@ var update = function(err, users) {
     cbInQueue++;
 
     var record = {
-      // NEED TO SET CORRECT DATE HERE SOMEHOW
-      checkinDate: 20151012,
+      checkinDate: Math.floor(Date.now() / 1000),
       checkinCount: user.checkinCount
     };
 

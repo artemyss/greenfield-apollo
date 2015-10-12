@@ -2,6 +2,7 @@ angular.module('app.dashboard', [])
 
 .controller('DashboardController', ['$rootScope', '$scope', '$window', '$location', 'Habits', 'Events',
   function($rootScope, $scope, $window, $location, Habits, Events) {
+
     $scope.username = $window.localStorage.username;
 
     $scope.testHabits = [
@@ -67,7 +68,26 @@ angular.module('app.dashboard', [])
         });
     };
 
+    $scope.getRecord = function() {
+      Habits.getRecord()
+        .then(function(record) {
+          $scope.record = record;
+        })
+    }
+
     $scope.getHabits();  // Invoke to render active habits on dashboard
+
+    var cal = new CalHeatMap();
+    cal.init({
+      data: $scope.record,
+      domain: "month",
+      subDomain: "x_day",
+      range: 1,
+      displayLegend: false,
+      cellSize: 30,
+      cellPadding: 5,
+      domainDynamicDimension: false
+    });
 
     $scope.toggleSampleData = function () {
       $rootScope.sample = !$rootScope.sample;

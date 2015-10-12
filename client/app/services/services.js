@@ -22,6 +22,20 @@ angular.module('app.services', [])
       });
     };
 
+    service.getRecord = function() {
+      return $http({
+        method: 'GET',
+        url: '/api/users/checkin'
+      })
+      .then(function(res) {
+        var calData = {}
+        for (var i = 0; i < res.data.record.length; i++) {
+          calData[res.data.record[i]["checkinDate"]] = res.data.record[i]["checkinCount"];
+        }
+        return JSON.stringify(calData);
+      })
+    }
+
     service.addHabit = function(habit) {
       habit.habitName = $sanitize(habit.habitName);
       return $http({

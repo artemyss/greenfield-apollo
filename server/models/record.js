@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var RecordSchema = new Schema({
 
   checkinDate: {
-    type: Date,
+    type: String,
     required: true
   },
 

@@ -19,13 +19,20 @@ body {
     position: fixed;
     left: -100vw;
   }
-  .toggleDashboard {
-    display: block;
+  .smallDash {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .smallDash button {
+    position: fixed;
+    right: 0;
+    top: 15px;
   }
 }
 
 @media (min-width: 661px) {
-  .toggleDashboard {
+  .smallDash {
     display: none;
   }
 }
@@ -34,15 +41,47 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: purple;
+  background-color: rgb(230, 230, 230);
   height: 100%;
   max-width: 350px;
   padding: 17.5px;
+  overflow: scroll;
+}
+
+.dashboard h1 {
+  text-align: center;
+  font-size: 3.5em;
+  margin: 0;
+  margin-bottom: 5%;
+}
+
+.dashboard h2 {
+  margin: 0;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.dashboard section:first-child {
+  text-align: center;
+}
+
+.username {
+  font-size: 1.5em;
+}
+
+#current-streak {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cal-heatmap-container {
+  margin: 0 auto;
 }
 
 .slideOut {
   left: 0;
 }
+
 /*
 #current-streak {
   width: 85%;

@@ -26,5 +26,6 @@ module.exports = function (router) {
   router.put('/habits/:id', userController.verifyHabit,
     userController.editHabit);
 
+  router.get('/checkin', userController.showRecord);
   router.post('/checkin/:id', userController.verifyHabit, userController.checkinHabit);
 };
