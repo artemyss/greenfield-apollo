@@ -11,7 +11,7 @@ angular.module('app.dashboard', ['ngMaterial'])
     //   {habitName: 'Workout', streak: 8, checkinCount: 15, failedCount: 2, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 8, active:true}
     // ];
 
-    // $scope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c"];
+    $scope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c"];
 
     $scope.toggleDashboard = function() {
       $('.dashboard').toggleClass("slideOut");
