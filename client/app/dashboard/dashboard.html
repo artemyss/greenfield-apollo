@@ -1,7 +1,7 @@
 <div class="container">
 <!--   <button type="button" class="btn btn-success" ng-click="toggleSampleData()">Toggle Sample Data</button> <br><br>-->
   <md-content class="md-padding">
-    <md-card ng-repeat="habit in habits | filter:{active:true}">
+    <md-card ng-repeat="habit in habits | filter:{active:true}" style={{color(habit)}}>
       <md-card-content>
         <h1 class="md-display-1">{{ habit.habitName }}</h1>
         <div layout="row" layout-align="space-around center">
@@ -26,7 +26,7 @@
         <md-button ng-if="buttonState(habit, 'completed')" ng-disabled="true" class="md-raised md-primary">Completed</md-button>
         <md-button ng-if="buttonState(habit, 'failed')" ng-disabled="true" class="md-raised md-warn">Failed</md-button>
       </div>
-      <div class="create" ng-show="habit.show">
+      <div class="create" ng-show="current.show">
 
 <!--         <div class="input-group clockpicker">
             <input type="text" class="form-control" value="09:30">
@@ -83,109 +83,3 @@
       </div>
     </md-card>
   </md-content>
-
-
-
-
-
-
-
-
-
-
-
-<!--   <div class="habits info">
-    <table class="table table-striped table-bordered table-hover">
-      <tr>
-        <th>
-          Daily Checkin
-        </th>
-        <th>
-          Habit
-        </th>
-        <th>
-          Reminder
-        </th>
-        <th>
-          Due
-        </th>
-        <th>
-          Current Streak
-        </th>
-        <th>
-          Record Streak
-        </th>
-        <th>
-          Edit Habit
-        </th>
-      </tr>
-      <tr class="habit" ng-repeat="habit in habits | filter:{active:true}">
-        <td>
-          <button ng-if="buttonState(habit, 'pending')" type="button" class="btn btn-success" ng-click="checkinHabit(habit)">Did-it!</button>
-          <button ng-if="buttonState(habit, 'completed')" type="button" class="btn btn-info disabled">Completed</button>
-          <button ng-if="buttonState(habit, 'failed')" type="button" class="btn btn-danger disabled">Failed</button>
-        </td>
-        <td>
-          {{ habit.habitName }}
-        </td>
-        <td>
-          {{ habit.reminderTime | date:'shortTime' }}
-        </td>
-        <td>
-          {{ habit.dueTime | date:'shortTime' }}
-        </td>
-        <td>
-          {{ habit.streak }}
-        </td>
-        <td>
-          {{ habit.streakRecord }}
-        </td>
-        <td>
- -->          <!-- ng-if for testing only (temporary) -->
-<!--           <button ng-if="!sample" type="button" class="btn btn-primary" ng-click="editHabit(habit)">Edit</button>
-        </td>
-      </tr>
-    </table>
-  </div>
- -->
-
-<!--   <div class="row">
-    <div class="col-md-2">
-      <h2>Habit Score</h2>
-    </div>
-    <div class="col-md-10">
-      <h2>Current Streak</h2>
-    </div>
-  </div>
-  <div class="row" ng-if="habits">
-    <div class="col-md-2 donut-col">
-      <c3chart ng-if="totalCompleted || totalFailed" class="donut" bindto-id="donut-plot1-chart">
-        <div ng-repeat="habit in habits">
-          <chart-column column-id="{{'Completed &quot;' + habit.habitName + '&quot;'}}"
-                      column-values="{{habit.checkinCount}}"
-                      column-type="donut"
-                      column-color="{{colors[$index]}}"/>
-        </div>
-        <chart-column column-id="Failed"
-                    column-values="{{totalFailed}}"
-                    column-type="donut"
-                    column-color="#d62728"/>
-        <chart-legend show-legend="false">
-        <chart-donut title="{{score}}" show-label="false"/>
-        <chart-tooltip value-format-function="formatDonut"/>
-      </c3chart>
-      <h3 ng-if="!totalCompleted">No score data</h3>
-    </div>
-    <div class="col-md-10">
-      <div class="graph" id="current-streak">
-        <div ng-if="habitStreaks.length">
-          <d3-bars data="habitStreaks"></d3-bars>
-        </div>
- -->        <!-- Placeholder streak data -->
-<!--         <h3 ng-if="!habitStreaks.length">No streak data</h3>
-
-      </div>
-    </div>
-  </div>
-</div>
- -->

@@ -3,7 +3,7 @@ angular.module('app.dashboard', ['ngMaterial'])
 .controller('DashboardController', ['$rootScope', '$scope', '$location', 'Habits', 'Events',
   function($rootScope, $scope, $location, Habits, Events) {
     $rootScope.showNav = true;
-    $scope.current;
+    // $scope.current;
 
     // $scope.testHabits = [
     //   {habitName: 'Submit a Pull Request', streak: 5, checkinCount: 25, failedCount: 3, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 15, active:true},
@@ -73,6 +73,11 @@ angular.module('app.dashboard', ['ngMaterial'])
 
     $scope.formatDonut = function (value) {
         return value;
+    };
+
+    $scope.color = function(habit) {
+      // return "opacity: " + habit.streak / 7;
+      return "background-color: hsla(132, 100%, 34%," + habit.streak / 14 + ")";
     };
 
     $scope.editHabit = function(habit) {
