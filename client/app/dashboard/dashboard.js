@@ -12,6 +12,10 @@ angular.module('app.dashboard', [])
 
     $scope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c"];
 
+    $scope.toggleDashboard = function() {
+      $('.dashboard').toggleClass("slideOut");
+    }
+
     $scope.buttonState = function (habit, state) {
       if (state === 'pending') {
         return habit.status === 'pending'

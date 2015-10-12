@@ -11,9 +11,22 @@ body {
   height: 100vh;
   width: 100vw;
 }
-@media (max-width: 960px) {
+@media (max-width: 660px) {
   .container {
     flex-direction: column;
+  }
+  .dashboard {
+    position: fixed;
+    left: -100vw;
+  }
+  .toggleDashboard {
+    display: block;
+  }
+}
+
+@media (min-width: 661px) {
+  .toggleDashboard {
+    display: none;
   }
 }
 
@@ -22,8 +35,9 @@ body {
   height: 100%;
 }
 
-
-
+.slideOut {
+  left: 0;
+}
 
 .create table {
   width: 100%;
