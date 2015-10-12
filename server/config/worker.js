@@ -33,6 +33,17 @@ var update = function(err, users) {
   users.forEach(function(user) {
     cbInQueue++;
 
+    var record = {
+      // NEED TO SET CORRECT DATE HERE SOMEHOW
+      checkinDate: 20151012,
+      checkinCount: user.checkinCount
+    };
+
+    if (user.record) {
+      user.record.push(record);
+      user.checkinCount = 0;
+    }
+
     user.habits.forEach(function(habit) {
       if (habit.active) {
         // skip updating streak count if user checks in between midnight and
