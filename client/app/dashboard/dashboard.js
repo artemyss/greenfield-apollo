@@ -1,16 +1,17 @@
-angular.module('app.dashboard', [])
+angular.module('app.dashboard', ['ngMaterial'])
 
 .controller('DashboardController', ['$rootScope', '$scope', '$location', 'Habits', 'Events',
   function($rootScope, $scope, $location, Habits, Events) {
     $rootScope.showNav = true;
+    $scope.current;
 
-    $scope.testHabits = [
-      {habitName: 'Submit a Pull Request', streak: 5, checkinCount: 25, failedCount: 3, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 15, active:true},
-      {habitName: 'Complete a Pomodoro', streak: 10, checkinCount: 20, failedCount: 4, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 20, active:true},
-      {habitName: 'Workout', streak: 8, checkinCount: 15, failedCount: 2, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 8, active:true}
-    ];
+    // $scope.testHabits = [
+    //   {habitName: 'Submit a Pull Request', streak: 5, checkinCount: 25, failedCount: 3, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 15, active:true},
+    //   {habitName: 'Complete a Pomodoro', streak: 10, checkinCount: 20, failedCount: 4, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 20, active:true},
+    //   {habitName: 'Workout', streak: 8, checkinCount: 15, failedCount: 2, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 8, active:true}
+    // ];
 
-    $scope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c"];
+    // $scope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c"];
 
     $scope.buttonState = function (habit, state) {
       if (state === 'pending') {
@@ -76,7 +77,32 @@ angular.module('app.dashboard', [])
 
     $scope.editHabit = function(habit) {
       Habits.setEdit(habit);
-      $location.path('/edit');
+      $scope.current = Habits.getEdit();
+      $scope.current.show = true;
+    };
+
+    $scope.updateHabit = function() {
+      Habits.updateHabit($scope.current)
+        .then(function() {
+          $scope.current.show = false;
+          $rootScope.$broadcast('habitChange');
+          $scope.getHabits();
+        })
+        .catch(function(err) {
+          console.error(err);
+        });
+    };
+
+    $scope.deactivateHabit = function() {
+      $scope.current.active = false;
+      Habits.updateHabit($scope.current)
+        .then(function() {
+          $rootScope.$broadcast('habitChange');
+          $location.path('/dashboard');
+        })
+        .catch(function(err) {
+          console.error(err);
+        });
     };
 
     $scope.checkinHabit = function(habit) {
