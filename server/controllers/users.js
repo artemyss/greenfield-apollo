@@ -139,6 +139,10 @@ module.exports = {
   },
 
   checkinHabit: function(req, res, next) {
+
+    console.log(req.user.checkinCount);
+    req.user.checkinCount++;
+
     var habit = req.mw_params.dbHabit;
 
     if (!habit.active) {
@@ -162,7 +166,7 @@ module.exports = {
       req.user.save(function(err) {
         if (err) return next(err);
 
-        next();
+        res.json({message: 'Checked in successfully.'});
       });
     }
   },

@@ -31,12 +31,35 @@ body {
 }
 
 .dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: purple;
   height: 100%;
+  max-width: 350px;
+  padding: 17.5px;
 }
 
 .slideOut {
   left: 0;
+}
+/*
+#current-streak {
+  width: 85%;
+  margin: 5% auto;
+}*/
+.donut .c3-chart-arcs-title {
+  font-size: 3em;
+}
+
+.donut svg {
+  max-height: 155px;
+}
+
+input[readonly] {
+  cursor: not-allowed;
+  background-color: #EEEEEE;
+  color: #9E9999;
 }
 
 .create table {
@@ -54,18 +77,4 @@ body {
   border-radius: 4px;
   width: calc(100% - 3em - 2px);
   font-family: sans-serif;
-}
-
-.donut .c3-chart-arcs-title {
-  font-size: 4em;
-}
-
-.donut svg {
-  max-height: 155px;
-}
-
-input[readonly] {
-  cursor: not-allowed;
-  background-color: #EEEEEE;
-  color: #9E9999;
 }

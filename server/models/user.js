@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 var HabitSchema = require('./habit');
+var RecordSchema = require('./record');
 
 // schema ==================================================
 var UserSchema = new Schema({
@@ -30,7 +31,14 @@ var UserSchema = new Schema({
     default: 3
   },
 
-  habits: [HabitSchema]
+  checkinCount: {
+    type: Number,
+    default: 0
+  },
+
+  habits: [HabitSchema],
+
+  record: [RecordSchema]
 });
 
 UserSchema.methods.comparePassword = function(password, cb) {

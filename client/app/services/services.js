@@ -1,7 +1,13 @@
 angular.module('app.services', [])
 
-.factory('Habits', ['$http', '$sanitize', '$interpolate', 'notify',
-  function($http, $sanitize, $interpolate, notify) {
+.factory('Habits', ['$rootScope', '$http', '$sanitize', '$interpolate', '$window', 'notify',
+  function($rootScope, $http, $sanitize, $interpolate, $window, notify) {
+
+    angular.element($window).on('storage', function(event) {
+      if (event.key === 'checkinCount') {
+        $rootScope.$apply();
+      }
+    });
 
     var _habit = {};
     var service = {};
@@ -58,7 +64,7 @@ angular.module('app.services', [])
       notify('Great job completing your habit!');
       return $http({
         method: 'POST',
-        url: '/api/records/' + habit._id,
+        url: '/api/users/checkin/' + habit._id,
         data: habit
       });
     };
