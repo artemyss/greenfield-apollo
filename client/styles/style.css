@@ -35,6 +35,10 @@ body {
   .smallDash {
     display: none;
   }
+  md-content {
+    width: 60%;
+    margin: 0 auto;
+  }
 }
 
 .dashboard {
@@ -46,6 +50,7 @@ body {
   max-width: 350px;
   padding: 17.5px;
   overflow: scroll;
+  z-index: 100;
 }
 
 .dashboard h1 {
