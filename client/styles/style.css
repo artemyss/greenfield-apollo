@@ -26,8 +26,8 @@ body {
   }
   .smallDash button {
     position: fixed;
-    right: 0;
-    top: 15px;
+    right: 15px;
+    top: 30px;
   }
 }
 
