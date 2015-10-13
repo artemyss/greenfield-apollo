@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Re-Habit</title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/c3/c3.min.css">
+    <link rel="stylesheet" href="lib/angular-notify/angular-notify.css">
+
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+  </head>
+
+  <body ng-app="app">
+    <nav ng-if="showNav" class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#/dashboard">Habit Trainer</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#/dashboard">Dashboard</a></li>
+            <li><a href="#/create">Create Habit</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#/signout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<!--     <div ng-show="$messageTemplate" class="cg-notify-message-template"> -->
+
+<!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+    <div ng-view=""></div>
+    <!--
+      The views will be rendered in the <ion-nav-view> directive below
+      Templates are in the /templates folder (but you could also
+      have templates inline in this html file if you'd like).
+    -->
+  </body>
+  <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <script src="lib/d3/d3.min.js"></script>
+    <script src="lib/c3/c3.min.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="lib/c3-angular/c3-angular.min.js"></script>
+    <script src="lib/satellizer/satellizer.min.js"></script>
+    <script src="lib/angular-notify/angular-notify.js"></script>
+
+    <script src="js/services/services.js"></script>
+    <script src="js/create/create.js"></script>
+    <script src="js/dashboard/dashboard.js"></script>
+    <script src="js/auth/auth.js"></script>
+    <script src="js/directives/directives.js"></script>
+    <script src="js/edit/edit.js"></script>
+    <script src="js/app.js"></script>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "rehabit-ionic",
+  "app_id": "bcaf9424",
+  "proxies": [
+    {
+      "path": "/",
+      "proxyUrl": "http://rehabit.herokuapp.com/"
+    }
+  ]
+}
