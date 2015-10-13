@@ -83,6 +83,10 @@ body {
   margin: 0 auto;
 }
 
+.graph-label {
+  font-size: 2em;
+}
+
 .slideOut {
   left: 0;
 }
