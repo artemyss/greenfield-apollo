@@ -50,6 +50,39 @@
   </div>
 
   <md-content class="md-padding">
+    <md-button class="md-raised" ng-click="toggleCreate()">New Habit</md-button>
+    <div ng-show="create">
+      <md-card ng-controller="CreateController">
+        <div class="create">
+          <form name="habitForm" ng-submit="addHabit()">
+            <md-content layout="row" layout-align="space-around center">
+              <md-input-container>
+                <label>Daily Habit</label>
+                <input type="text" required ng-model="habit.habitName"/>
+              </md-input-container>
+              <md-input-container>
+                <label>Reminder</label>
+                <input type="time" required ng-model="habit.reminderTime"/>
+              </md-input-container>
+              <md-input-container>
+                <label>Due</label>
+                <input type="time" required ng-model="habit.dueTime"/>
+              </md-input-container>
+            </md-content>
+            <div class="md-actions" layout="row" layout-align="end center">
+              <md-button class="md-raised md-primary" type="submit">
+                Add habit
+              </md-button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-danger" ng-if="showLimitExceed">
+          <div class="panel-heading">Active Habit Limit</div>
+          <div class="panel-body">Sorry, we do not track more than 3 daily active habits</div>
+        </div>
+      </md-card>
+    </div>
+
     <md-card ng-repeat="habit in habits | filter:{active:true}" style={{color(habit)}}>
       <md-card-content>
         <h1 class="md-display-1">{{ habit.habitName }}</h1>
@@ -67,7 +100,6 @@
             <h1 class="md-display-3">{{ habit.streak }}</h1>
           </div>
         </div>
-
       </md-card-content>
       <div class="md-actions" layout="row" layout-align="end center">
         <md-button class="md-raised" ng-click="editHabit(habit)">Edit</md-button>
@@ -75,57 +107,28 @@
         <md-button ng-if="buttonState(habit, 'completed')" ng-disabled="true" class="md-raised md-primary">Completed</md-button>
         <md-button ng-if="buttonState(habit, 'failed')" ng-disabled="true" class="md-raised md-warn">Failed</md-button>
       </div>
-      <div class="create" ng-show="current.show">
-
-<!--         <div class="input-group clockpicker">
-            <input type="text" class="form-control" value="09:30">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-time"></span>
-            </span>
-        </div>
-        <script type="text/javascript">
-        $('.clockpicker').clockpicker();
-        </script> -->
-
+      <div class="create" ng-show="habit.show">
         <form name="habitForm" ng-submit="updateHabit()">
-          <table>
-            <tr>
-              <td>
-                <label>
-                  Daily habit:
-                </label>
-              </td>
-              <td>
-                <input type="text" required readonly ng-model="habit.habitName"/>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>
-                  Remind me at:
-                </label>
-              </td>
-              <td>
-                <input type="time" required ng-model="habit.reminderTime"/>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>
-                  Due at:
-                </label>
-              </td>
-              <td>
-                <input type="time" required ng-model="habit.dueTime"/>
-              </td>
-            </tr>
-          </table>
+          <md-content layout="row" layout-align="space-around center">
+            <md-input-container>
+              <label>Daily Habit</label>
+              <input type="text" required readonly ng-model="habit.habitName"/>
+            </md-input-container>
+            <md-input-container>
+              <label>Reminder</label>
+              <input type="time" required ng-model="habit.reminderTime"/>
+            </md-input-container>
+            <md-input-container>
+              <label>Due</label>
+              <input type="time" required ng-model="habit.dueTime"/>
+            </md-input-container>
+          </md-content>
           <div class="md-actions" layout="row" layout-align="end center">
-          <md-button type="submit" class="md-raised md-primary">
-            Update habit
-          </md-button>
-          <md-button type="button" class="md-raised md-warn" ng-click="deactivateHabit()">
-            Deactivate habit
+            <md-button class="md-raised md-primary" type="submit">
+              Update Habit
+            </md-button>
+            <md-button type="button" class="md-raised md-warn" ng-click="deactivateHabit()">
+              Deactivate habit
           </md-button>
           </div>
         </form>
