@@ -1,16 +1,59 @@
-angular.module('app.dashboard', [])
+angular.module('app.dashboard', ['ngMaterial'])
 
-.controller('DashboardController', ['$rootScope', '$scope', '$location', 'Habits', 'Events',
-  function($rootScope, $scope, $location, Habits, Events) {
+.controller('DashboardController', ['$rootScope', '$scope', '$window', '$location', 'Habits', 'Events',
+  function($rootScope, $scope, $window, $location, Habits, Events) {
+
+    $scope.username = $window.localStorage.username;
+
     $rootScope.showNav = true;
+    $rootScope.create = false;
 
-    $scope.testHabits = [
-      {habitName: 'Submit a Pull Request', streak: 5, checkinCount: 25, failedCount: 3, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 15, active:true},
-      {habitName: 'Complete a Pomodoro', streak: 10, checkinCount: 20, failedCount: 4, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 20, active:true},
-      {habitName: 'Workout', streak: 8, checkinCount: 15, failedCount: 2, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 8, active:true}
-    ];
+    $scope.toggleCreate = function(){
+      $rootScope.create = !$rootScope.create;
+    };
+
+    $scope.editHabit = function(habit) {
+      Habits.setEdit(habit);
+      $scope.habit = Habits.getEdit();
+      console.log($scope.habit);
+      $scope.habit.show = true;
+    };
+
+    $scope.updateHabit = function() {
+      Habits.updateHabit($scope.habit)
+        .then(function() {
+          $scope.habit.show = false;
+          $rootScope.$broadcast('habitChange');
+          // $scope.getHabits();
+        })
+        .catch(function(err) {
+          console.error(err);
+        });
+    };
+
+    $scope.deactivateHabit = function() {
+      $scope.habit.active = false;
+      Habits.updateHabit($scope.habit)
+        .then(function() {
+          $rootScope.$broadcast('habitChange');
+          $location.path('/dashboard');
+        })
+        .catch(function(err) {
+          console.error(err);
+        });
+    };
+
+    // $scope.testHabits = [
+    //   {habitName: 'Submit a Pull Request', streak: 5, checkinCount: 25, failedCount: 3, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 15, active:true},
+    //   {habitName: 'Complete a Pomodoro', streak: 10, checkinCount: 20, failedCount: 4, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 20, active:true},
+    //   {habitName: 'Workout', streak: 8, checkinCount: 15, failedCount: 2, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 8, active:true}
+    // ];
 
     $scope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c"];
+
+    $scope.toggleDashboard = function() {
+      $('.dashboard').toggleClass("slideOut");
+    }
 
     $scope.buttonState = function (habit, state) {
       if (state === 'pending') {
@@ -63,20 +106,36 @@ angular.module('app.dashboard', [])
         });
     };
 
+    $scope.getRecord = function() {
+      Habits.getRecord()
+        .then(function(record) {
+          $scope.record = record;
+        })
+    }
+
     $scope.getHabits();  // Invoke to render active habits on dashboard
+
+    var cal = new CalHeatMap();
+    cal.init({
+      data: $scope.record,
+      domain: "month",
+      subDomain: "x_day",
+      range: 1,
+      displayLegend: false,
+      cellSize: 30,
+      cellPadding: 5,
+      domainDynamicDimension: false
+    });
 
     $scope.toggleSampleData = function () {
       $rootScope.sample = !$rootScope.sample;
       $location.path('/');
     };
 
-    $scope.formatDonut = function (value) {
-        return value;
-    };
 
-    $scope.editHabit = function(habit) {
-      Habits.setEdit(habit);
-      $location.path('/edit');
+    $scope.color = function(habit) {
+      // return "opacity: " + habit.streak / 7;
+      return "background-color: hsla(132, 100%, 34%," + habit.streak / 14 + ")";
     };
 
     $scope.checkinHabit = function(habit) {

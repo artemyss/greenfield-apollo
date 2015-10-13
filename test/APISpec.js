@@ -174,61 +174,61 @@ describe('Server Tests:', function() {
       });
     });
 
-    describe('/api/records/<habit id>:', function() {
-      it('should be able to check in', function(done) {
-        var begin = function() {
-          agent.post('/api/records/' + habit0)
-            .set('Authorization', 'Bearer ' + token)
-            .expect(200, {message: 'Checked in successfully.'}, cb1);
-        };
+    // describe('/api/records/<habit id>:', function() {
+    //   it('should be able to check in', function(done) {
+    //     var begin = function() {
+    //       agent.post('/api/records/' + habit0)
+    //         .set('Authorization', 'Bearer ' + token)
+    //         .expect(200, {message: 'Checked in successfully.'}, cb1);
+    //     };
 
-        var cb1 = function() {
-          agent.post('/api/records/' + habit1)
-            .set('Authorization', 'Bearer ' + token)
-            .expect(200, cb2);
-        };
+    //     var cb1 = function() {
+    //       agent.post('/api/records/' + habit1)
+    //         .set('Authorization', 'Bearer ' + token)
+    //         .expect(200, cb2);
+    //     };
 
-        var cb2 = function() {
-          agent.get('/api/records/' + habit0)
-            .set('Authorization', 'Bearer ' + token)
-            .expect(200)
-            .expect(function(res) {
-              expect(res.body.records.length).to.equal(1);
-            })
-            .end(done);
-        };
+    //     var cb2 = function() {
+    //       agent.get('/api/records/' + habit0)
+    //         .set('Authorization', 'Bearer ' + token)
+    //         .expect(200)
+    //         .expect(function(res) {
+    //           expect(res.body.records.length).to.equal(1);
+    //         })
+    //         .end(done);
+    //     };
 
-        begin();
-      });
+    //     begin();
+    //   });
 
-      it ('should update streak correctly', function(done) {
-        agent.get('/api/users/habits')
-          .set('Authorization', 'Bearer ' + token)
-          .expect(function(res) {
-            expect(res.body.habits[0].streak).to.equal(4);
-            expect(res.body.habits[0].streakRecord).to.equal(4);
-            expect(res.body.habits[1].streak).to.equal(1);
-          })
-          .end(done);
-      });
+    //   it ('should update streak correctly', function(done) {
+    //     agent.get('/api/users/habits')
+    //       .set('Authorization', 'Bearer ' + token)
+    //       .expect(function(res) {
+    //         expect(res.body.habits[0].streak).to.equal(4);
+    //         expect(res.body.habits[0].streakRecord).to.equal(4);
+    //         expect(res.body.habits[1].streak).to.equal(1);
+    //       })
+    //       .end(done);
+    //   });
 
-      it ('should fail if habit does not belong to user', function(done) {
-        agent.post('/api/records/abc')
-          .set('Authorization', 'Bearer ' + token)
-          .expect({
-            status: 403,
-            message: 'Habit ID does not belong to this user.'
-          }, done);
-      });
+    //   it ('should fail if habit does not belong to user', function(done) {
+    //     agent.post('/api/records/abc')
+    //       .set('Authorization', 'Bearer ' + token)
+    //       .expect({
+    //         status: 403,
+    //         message: 'Habit ID does not belong to this user.'
+    //       }, done);
+    //   });
 
-      it ('should not be able to check in twice in a day', function(done) {
-        agent.post('/api/records/' + habit0)
-          .set('Authorization', 'Bearer ' + token)
-          .expect({
-            status: 403,
-            message: 'Already completed this habit today.'
-          }, done);
-      });
-    });
+    //   it ('should not be able to check in twice in a day', function(done) {
+    //     agent.post('/api/records/' + habit0)
+    //       .set('Authorization', 'Bearer ' + token)
+    //       .expect({
+    //         status: 403,
+    //         message: 'Already completed this habit today.'
+    //       }, done);
+    //   });
+    // });
   });
 });

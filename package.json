@@ -1,5 +1,5 @@
 {
-  "name": "habit-trainer",
+  "name": "rehabit",
   "version": "0.0.1",
   "description": "Habit Trainer Application",
   "engines": {
@@ -13,19 +13,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/greenfield-apollo/greenfield-apollo.git"
+    "url": "git+https://github.com/artemyss/rehabit.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/greenfield-apollo/greenfield-apollo/issues"
+    "url": "https://github.com/artemyss/rehabit/issues"
   },
-  "homepage": "https://github.com/greenfield-apollo/greenfield-apollo#readme",
+  "homepage": "https://github.com/artemyss/rehabit#readme",
   "dependencies": {
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.0",
+    "clockpicker": "0.0.7",
     "express": "^4.13.3",
     "express-error-handler": "^1.0.1",
+    "jquery": "^2.1.4",
     "jsonwebtoken": "^5.0.5",
     "moment": "^2.10.6",
     "mongoose": "^4.1.8",
