@@ -140,7 +140,9 @@ angular.module('app.dashboard', ['ngMaterial'])
       displayLegend: false,
       cellSize: 30,
       cellPadding: 5,
-      domainDynamicDimension: false
+      domainDynamicDimension: false,
+      domainLabelFormat: "%m-%Y",
+      subDomainTextFormat: "%d"
     });
 
     $scope.toggleSampleData = function () {
