@@ -1,7 +1,10 @@
 angular.module('app.dashboard', ['ngMaterial'])
 
-.controller('DashboardController', ['$rootScope', '$scope', '$location', 'Habits', 'Events',
-  function($rootScope, $scope, $location, Habits, Events) {
+.controller('DashboardController', ['$rootScope', '$scope', '$window', '$location', 'Habits', 'Events',
+  function($rootScope, $scope, $window, $location, Habits, Events) {
+
+    $scope.username = $window.localStorage.username;
+
     $rootScope.showNav = true;
     $rootScope.create = false;
 
@@ -40,14 +43,17 @@ angular.module('app.dashboard', ['ngMaterial'])
         });
     };
 
-
     // $scope.testHabits = [
     //   {habitName: 'Submit a Pull Request', streak: 5, checkinCount: 25, failedCount: 3, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 15, active:true},
     //   {habitName: 'Complete a Pomodoro', streak: 10, checkinCount: 20, failedCount: 4, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 20, active:true},
     //   {habitName: 'Workout', streak: 8, checkinCount: 15, failedCount: 2, reminderTime: '2:30 PM', dueTime: '4:30 PM', streakRecord: 8, active:true}
     // ];
 
-    // $scope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c"];
+    $scope.colors = ["#1f77b4", "#ff7f0e", "#2ca02c"];
+
+    $scope.toggleDashboard = function() {
+      $('.dashboard').toggleClass("slideOut");
+    }
 
     $scope.buttonState = function (habit, state) {
       if (state === 'pending') {
@@ -100,12 +106,31 @@ angular.module('app.dashboard', ['ngMaterial'])
         });
     };
 
+    $scope.getRecord = function() {
+      Habits.getRecord()
+        .then(function(record) {
+          $scope.record = record;
+        })
+    }
+
     $scope.getHabits();  // Invoke to render active habits on dashboard
 
-    // $scope.toggleSampleData = function () {
-    //   $rootScope.sample = !$rootScope.sample;
-    //   $location.path('/');
-    // };
+    var cal = new CalHeatMap();
+    cal.init({
+      data: $scope.record,
+      domain: "month",
+      subDomain: "x_day",
+      range: 1,
+      displayLegend: false,
+      cellSize: 30,
+      cellPadding: 5,
+      domainDynamicDimension: false
+    });
+
+    $scope.toggleSampleData = function () {
+      $rootScope.sample = !$rootScope.sample;
+      $location.path('/');
+    };
 
 
     $scope.color = function(habit) {

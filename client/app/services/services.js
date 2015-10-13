@@ -1,7 +1,13 @@
 angular.module('app.services', [])
 
-.factory('Habits', ['$http', '$sanitize', '$interpolate', 'notify',
-  function($http, $sanitize, $interpolate, notify) {
+.factory('Habits', ['$rootScope', '$http', '$sanitize', '$interpolate', '$window', 'notify',
+  function($rootScope, $http, $sanitize, $interpolate, $window, notify) {
+
+    angular.element($window).on('storage', function(event) {
+      if (event.key === 'checkinCount') {
+        $rootScope.$apply();
+      }
+    });
 
     var _habit = {};
     var service = {};
@@ -15,6 +21,20 @@ angular.module('app.services', [])
         return resp.data.habits;
       });
     };
+
+    service.getRecord = function() {
+      return $http({
+        method: 'GET',
+        url: '/api/users/checkin'
+      })
+      .then(function(res) {
+        var calData = {}
+        for (var i = 0; i < res.data.record.length; i++) {
+          calData[res.data.record[i]["checkinDate"]] = res.data.record[i]["checkinCount"];
+        }
+        return JSON.stringify(calData);
+      })
+    }
 
     service.addHabit = function(habit) {
       habit.habitName = $sanitize(habit.habitName);
@@ -58,7 +78,7 @@ angular.module('app.services', [])
       notify('Great job completing your habit!');
       return $http({
         method: 'POST',
-        url: '/api/records/' + habit._id,
+        url: '/api/users/checkin/' + habit._id,
         data: habit
       });
     };
@@ -68,11 +88,17 @@ angular.module('app.services', [])
   }
 ])
 
-.factory('Auth', ['$http', '$location', '$window', '$auth', '$sanitize',
-  function ($http, $location, $window, $auth, $sanitize) {
+.factory('Auth', ['$rootScope', '$http', '$location', '$window', '$auth', '$sanitize',
+  function ($rootScope, $http, $location, $window, $auth, $sanitize) {
+    angular.element($window).on('storage', function(event) {
+      if (event.key === 'username') {
+        $rootScope.$apply();
+      }
+    });
     var signin = function (user) {
       user.username = $sanitize(user.username);
       user.password = $sanitize(user.password);
+      $window.localStorage && $window.localStorage.setItem('username', user.username);
       return $http.post('/authenticate/signin', user)
         .then(function (resp) {
           return resp.data.token;
@@ -82,6 +108,7 @@ angular.module('app.services', [])
     var signup = function (user) {
       user.username = $sanitize(user.username);
       user.password = $sanitize(user.password);
+      $window.localStorage && $window.localStorage.setItem('username', user.username);
       return $http.post('/authenticate/signup', user)
         .then(function (resp) {
           return resp.data.token;

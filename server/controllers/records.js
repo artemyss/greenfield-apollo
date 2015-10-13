@@ -17,16 +17,17 @@ module.exports = {
   },
 
   addRecord: function(req, res, next) {
-    var newRecord = new Record({
-      habitId: req.params.id,
-      checkinDate: req.mw_params.checkin
-    });
+    // var newRecord = new Record({
+    //   habitId: req.params.id,
+    //   checkinDate: req.mw_params.checkin
+    // });
 
-    newRecord.save(function(err) {
-      if (err) return next(err);
+    // newRecord.save(function(err) {
+    //   if (err) return next(err);
 
-      console.log('Habit ' + req.params.id + ' checked in.');
-      res.json({message: 'Checked in successfully.'});
-    });
+    //   console.log('Habit ' + req.params.id + ' checked in.');
+    //   res.json({message: 'Checked in successfully.'});
+    // });
+  res.json({message: 'Checked in successfully.'});
   }
 };

@@ -3,42 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <title>Habit Trainer</title>
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/c3/c3.min.css">
-    <link rel="stylesheet" href="lib/clockpicker/dist/jquery-clockpicker.min.css">
+    <!-- <link rel="stylesheet" href="lib/clockpicker/dist/jquery-clockpicker.min.css"> -->
     <link rel="stylesheet" href="lib/angular-notify/angular-notify.css">
     <link rel="stylesheet" href="lib/angular-material/angular-material.css">
-    <link rel="stylesheet" type="text/css" href="dist/style.min.css">
+    <link rel="stylesheet" href="lib/cal-heatmap/cal-heatmap.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="dist/style.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
   </head>
   <body ng-app="app">
-    <nav ng-if="showNav" class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#/dashboard">Habit Trainer</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="#/dashboard">Dashboard</a></li>
-            <!-- <li><a href="#/create">Create Habit</a></li> -->
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/signout">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
 
-<!--     <div ng-show="$messageTemplate" class="cg-notify-message-template"> -->
-
-<!-- the ng-view directive is where our templates will be loaded into when navigated to -->
+  <!-- the ng-view directive is where our templates will be loaded into when navigated to -->
     <div ng-view></div>
 
+    <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/d3/d3.min.js"></script>
     <script src="lib/c3/c3.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
@@ -54,9 +32,9 @@
     <script src="lib/clockpicker/dist/jquery-clockpicker.js"></script>
     <!-- <script src="./node_modules/jquery/dist/jquery.min.js"></script> -->
     <!-- <script src="./node_modules/clockpicker/dist/jquery-clockpicker.js"></script> -->
+    <script type="text/javascript" src="lib/cal-heatmap/cal-heatmap.min.js"></script>
+    <!-- <script src="dist/habit-trainer.min.js"></script> -->
     <script src="dist/rehabit.min.js"></script>
-
-
   </body>
 </html>
 

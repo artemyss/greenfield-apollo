@@ -139,6 +139,10 @@ module.exports = {
   },
 
   checkinHabit: function(req, res, next) {
+
+    console.log(req.user.checkinCount);
+    req.user.checkinCount++;
+
     var habit = req.mw_params.dbHabit;
 
     if (!habit.active) {
@@ -162,9 +166,34 @@ module.exports = {
       req.user.save(function(err) {
         if (err) return next(err);
 
-        next();
+        res.json({message: 'Checked in successfully.'});
       });
     }
+  },
+
+  showRecord: function(req, res, next) {
+    var data = {
+      record: req.user.record
+    };
+    // var data = { "1444678257":1,
+    //   "1444678304":5,
+    //   "1444678606":8,
+    //   "1444678616":2,
+    //   "1444678931":0,
+    //   "1444679527":6,
+    //   "1444679576":7,
+    //   "1444679614":0,
+    //   "1444682022":10,
+    //   "1444682023":10,
+    //   "1444682169":3,
+    //   "1444682369":2,
+    //   "1444682386":1,
+    //   "1444682387":1,
+    //   "1444682388":10,
+    //   "1444682797":1,
+    //   "1444682862":2
+  // }
+    res.json(data);
   },
 
   habitReminded: function(req, res, next) {
