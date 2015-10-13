@@ -3,7 +3,6 @@ angular.module('app.edit', [])
 .controller('EditController', ['$rootScope', '$scope', '$location', 'Habits',
   function($rootScope, $scope, $location, Habits) {
     $rootScope.showNav = true;
-
     $scope.habit = Habits.getEdit();
 
     $scope.updateHabit = function() {

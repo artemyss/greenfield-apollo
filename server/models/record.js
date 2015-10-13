@@ -4,15 +4,17 @@ var Schema = mongoose.Schema;
 
 // schema ==================================================
 var RecordSchema = new Schema({
-  habitId: {
+
+  checkinDate: {
     type: String,
     required: true
   },
 
-  checkinDate: {
-    type: Date,
-    required: true
+  checkinCount: {
+    type: Number,
+    default: 0
   }
+
 });
 
-module.exports = mongoose.model('Record', RecordSchema);
+module.exports = RecordSchema;
